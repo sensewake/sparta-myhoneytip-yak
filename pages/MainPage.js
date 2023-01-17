@@ -1,5 +1,5 @@
 import React,{useState,useEffect} from 'react';
-import { StyleSheet, Text, View, Image, TouchableOpacity, ScrollView} from 'react-native';
+import { StyleSheet, Text, View, Image, TouchableOpacity, ScrollView, Platform} from 'react-native';
 
 const main = 'https://storage.googleapis.com/sparta-image.appspot.com/lecture/main.png'
 import data from '../data.json';
@@ -9,6 +9,14 @@ import { StatusBar } from 'expo-status-bar';
 import * as Location from "expo-location";
 import axios from "axios"
 import {firebase_db} from "../firebaseConfig"
+
+import {
+  setTestDeviceIDAsync,
+  AdMobBanner,
+  AdmobInterstitial,
+  PublisherBanner,
+  AdmobBanner
+} from 'expo-ads-admob' ;
 
 export default function MainPage({navigation,route}) {
   //useState 사용법
@@ -71,8 +79,12 @@ export default function MainPage({navigation,route}) {
         `http://api.openweathermap.org/data/2.5/weather?lat=${latitude}&lon=${longitude}&appid=${API_KEY}&units=metric`
       );
 
+      console.log(result);
       const temp = result.data.main.temp; 
       const condition = result.data.weather[0].main
+
+      console.log(temp);
+      console.log(condition);
     
 
       //오랜만에 복습해보는 객체 리터럴 방식으로 딕셔너리 구성하기!!
@@ -129,10 +141,27 @@ export default function MainPage({navigation,route}) {
           cateState.map((content,i)=>{
             return (<Card content={content} key={i} navigation={navigation}/>)
           })
-        }
-        
+        }        
       </View>
-   
+      {/*
+        ios : ca-app-pub-5469890461499544/4062593422
+        android : ca-app-pub-5469890461499544/6195626693
+      */}
+      {Platform.OS === 'ios' ? (
+                <AdMobBanner
+                  bannerSize="fullBanner" 
+                  servePersonalizedAds={true}
+                  adUnitID="ca-app-pub-5469890461499544/4062593422" 
+                  style={styles.banner}
+                />
+            ):(
+                <AdMobBanner
+                  bannerSize="fullBanner" 
+                  servePersonalizedAds={true}
+                  adUnitID="ca-app-pub-5469890461499544/6195626693" 
+                  style={styles.banner}
+                />
+            )}   
     </ScrollView>)
 }
 
@@ -243,6 +272,10 @@ weather:{
     color:"#fff",
     textAlign:"center",
     marginTop:10
+  },
+  banner: {
+    width:"100%",
+    height:100
   }
 
 

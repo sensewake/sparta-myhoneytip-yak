@@ -16,18 +16,24 @@
     },
     "assetBundlePatterns": [
       "**/*"
-    ],
-    "ios": {
-      "supportsTablet": true
-    },
-    "android": {
-      "adaptiveIcon": {
-        "foregroundImage": "./assets/adaptive-icon.png",
-        "backgroundColor": "#FFFFFF"
-      }
-    },
+    ],    
     "web": {
       "favicon": "./assets/favicon.png"
+    },
+    "ios": {
+      "supportsTablet": true, 
+      "buildNumber": "1.0.0",
+      "bundleIdentifier": "com.myhoneytip.yak", 
+      "config": {
+        "googleMobileAdsAppId": "ca-app-pub-5469890461499544/4062593422" 
+      }
+    },
+    "android": {
+      "package": "com.myhoneytip.yak", 
+      "versionCode": 1,
+      "config": {
+        "googleMobileAdsAppId": "ca-app-pub-5469890461499544/6195626693" 
+      }
     },
     "plugins": [
       "expo-build-properties"
