@@ -10,13 +10,14 @@ import * as Location from "expo-location";
 import axios from "axios"
 import {firebase_db} from "../firebaseConfig"
 
-import {
-  setTestDeviceIDAsync,
-  AdMobBanner,
-  AdmobInterstitial,
-  PublisherBanner,
-  AdmobBanner
-} from 'expo-ads-admob' ;
+// addMob 에러가 나서 주석처리함 
+// import {
+//   setTestDeviceIDAsync,
+//   AdMobBanner,
+//   AdmobInterstitial,
+//   PublisherBanner,
+//   AdmobBanner
+// } from 'expo-ads-admob' ;
 
 export default function MainPage({navigation,route}) {
   //useState 사용법
@@ -81,11 +82,7 @@ export default function MainPage({navigation,route}) {
 
       console.log(result);
       const temp = result.data.main.temp; 
-      const condition = result.data.weather[0].main
-
-      console.log(temp);
-      console.log(condition);
-    
+      const condition = result.data.weather[0].main  
 
       //오랜만에 복습해보는 객체 리터럴 방식으로 딕셔너리 구성하기!!
       //잘 기억이 안난다면 1주차 강의 6-5를 다시 복습해보세요!
@@ -143,11 +140,13 @@ export default function MainPage({navigation,route}) {
           })
         }        
       </View>
-      {/*
+      {/* addMob 에러가 나서 주석처리함 
         ios : ca-app-pub-5469890461499544/4062593422
         android : ca-app-pub-5469890461499544/6195626693
       */}
-      {Platform.OS === 'ios' ? (
+      {
+      /* addMob 에러가 나서 주석처리함 
+        Platform.OS === 'ios' ? (
                 <AdMobBanner
                   bannerSize="fullBanner" 
                   servePersonalizedAds={true}
@@ -161,7 +160,9 @@ export default function MainPage({navigation,route}) {
                   adUnitID="ca-app-pub-5469890461499544/6195626693" 
                   style={styles.banner}
                 />
-            )}   
+            )
+      */
+      }   
     </ScrollView>)
 }
 
